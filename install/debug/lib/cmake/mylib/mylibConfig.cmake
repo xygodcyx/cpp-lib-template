@@ -19,7 +19,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_cmake_targets_defined "")
 set(_cmake_targets_not_defined "")
 set(_cmake_expected_targets "")
-foreach(_cmake_expected_target IN ITEMS mylib::mylib)
+foreach(_cmake_expected_target IN ITEMS mylib::core)
   list(APPEND _cmake_expected_targets "${_cmake_expected_target}")
   if(TARGET "${_cmake_expected_target}")
     list(APPEND _cmake_targets_defined "${_cmake_expected_target}")
@@ -55,11 +55,13 @@ if(_IMPORT_PREFIX STREQUAL "/")
   set(_IMPORT_PREFIX "")
 endif()
 
-# Create imported target mylib::mylib
-add_library(mylib::mylib STATIC IMPORTED)
+# Create imported target mylib::core
+add_library(mylib::core STATIC IMPORTED)
 
-set_target_properties(mylib::mylib PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+set_target_properties(mylib::core PROPERTIES
+  INTERFACE_COMPILE_DEFINITIONS "FEATURE_X"
+  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
 )
 
 # Load information for each installed configuration.

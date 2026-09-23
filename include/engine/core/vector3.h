@@ -2,6 +2,8 @@
 
 #include <ostream>
 
+namespace engine {
+
 struct Vector3 {
     float x, y, z;
     Vector3() = default;
@@ -11,3 +13,5 @@ struct Vector3 {
 };
 
 std::ostream& operator<<(std::ostream& stream, const Vector3& other);
+
+}  // namespace engine
