@@ -9,7 +9,7 @@ add_library(core
     src/core/vector3.cpp
 )
 
-add_library(engine::core ALIAS core)
+add_library(${PROJECT_NAME}::core ALIAS core)
 
 target_compile_options(core PRIVATE -Wall -Wextra)
 target_compile_features(core PUBLIC cxx_std_17)
